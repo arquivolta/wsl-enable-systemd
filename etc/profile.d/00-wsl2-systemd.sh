@@ -2,6 +2,14 @@
 
 SYSTEMD_EXE="$(command -v systemd)"
 
+if [ -z "$SYSTEMD_EXE" ]; then
+	if [ -x "/usr/lib/systemd/systemd" ]; then
+		SYSTEMD_EXE="/usr/lib/systemd/systemd"
+	else
+		SYSTEMD_EXE="/lib/systemd/systemd"
+	fi
+fi
+
 SYSTEMD_EXE="$SYSTEMD_EXE --unit=multi-user.target" # snapd requires multi-user.target not basic.target
 SYSTEMD_PID="$(ps -C systemd -o pid= | head -n1)"
 
@@ -87,6 +95,13 @@ fi
 unset SYSTEMD_EXE
 unset SYSTEMD_PID
 
+if [ -f "$HOME/.systemd.env" ]; then
+	set -a
+	source "$HOME/.systemd.env"
+	set +a
+	rm "$HOME/.systemd.env"
+fi
+
 for script in /etc/profile.d/*.sh; do
 	if [ "$script" = "/etc/profile.d/00-wsl2-systemd.sh" ]; then
 		continue
@@ -95,3 +110,10 @@ for script in /etc/profile.d/*.sh; do
 done
 
 cd "$PWD"
+
+if [ -d "$HOME/.wslprofile.d" ]; then
+	for script in "$HOME/.wslprofile.d/"*; do
+		source "$script"
+	done
+	unset script
+fi

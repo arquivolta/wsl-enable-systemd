@@ -1,5 +1,12 @@
-Defaults env_keep += WSL_DISTRO_NAME
-Defaults env_keep += WSL_INTEROP
-Defaults env_keep += WSL_SYSTEMD_EXECUTION_ARGS
-Defaults env_keep += DISPLAY
-Defaults env_keep += HOME
+Defaults env_keep += "WSL_DISTRO_NAME"
+Defaults env_keep += "WSL_INTEROP"
+Defaults env_keep += "WSL_SYSTEMD_EXECUTION_ARGS"
+
+Defaults env_keep += "LANG LANGUAGE LINGUAS LC_* _XKB_CHARSET"
+Defaults env_keep += "DISPLAY"
+Defaults env_keep += "HOME"
+Defaults env_keep += "XAPPLRESDIR XFILESEARCHPATH XUSERFILESEARCHPATH"
+Defaults env_keep += "XDG_SESSION_COOKIE"
+Defaults env_keep += "XMODIFIERS GTK_IM_MODULE QT_IM_MODULE QT_IM_SWITCHER"
+
+%wheel ALL=(root) NOPASSWD: /bin/sh /etc/profile.d/00-wsl2-systemd.sh
