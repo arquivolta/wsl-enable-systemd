@@ -9,4 +9,6 @@ Defaults env_keep += "XAPPLRESDIR XFILESEARCHPATH XUSERFILESEARCHPATH"
 Defaults env_keep += "XDG_SESSION_COOKIE"
 Defaults env_keep += "XMODIFIERS GTK_IM_MODULE QT_IM_MODULE QT_IM_SWITCHER"
 
+Defaults lecture = never
+
 %wheel ALL=(root) NOPASSWD: /bin/sh /etc/profile.d/00-wsl2-systemd.sh
