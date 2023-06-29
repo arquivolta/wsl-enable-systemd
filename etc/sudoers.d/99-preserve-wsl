@@ -14,4 +14,4 @@ Defaults !mail_badpass
 Defaults !mail_no_user
 Defaults !mail_always
 
-%wheel ALL=(root) NOPASSWD: /bin/sh /etc/profile.d/00-wsl2-systemd.sh
+%wheel ALL=(root) NOPASSWD: /sbin/wsl-enable-systemd

@@ -6,3 +6,6 @@ install:
 
 	install -d $(DESTDIR)/etc/sudoers.d
 	install -m 644 -o root -g root -D etc/sudoers.d/99-preserve-wsl $(DESTDIR)etc/sudoers.d/
+
+	install -d $(DESTDIR)/sbin
+	install -m 755 -o root -g root -D sbin/* $(DESTDIR)sbin
