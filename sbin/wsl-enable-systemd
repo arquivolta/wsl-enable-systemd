@@ -1,0 +1,19 @@
+#!/usr/bin/env python
+
+import configparser
+
+wsl2_conf = '/etc/wsl.conf'
+
+config = configparser.ConfigParser()
+try:
+	config.read(wsl2_conf)
+except FileNotFoundError:
+	config = configparser.ConfigParser()
+
+try:
+	config['boot']['systemd'] = 'true'
+except KeyError:
+	config['boot'] = {'systemd': 'true'}
+
+with open(wsl2_conf, 'w') as cf:
+	config.write(cf)
