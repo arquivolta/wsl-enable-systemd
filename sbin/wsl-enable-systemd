@@ -15,5 +15,8 @@ try:
 except KeyError:
 	config['boot'] = {'systemd': 'true'}
 
+## NB: This time we're guaranteed that the [boot] section exists
+config['boot']['command'] = '/sbin/wsl-exec-wsld'
+
 with open(wsl2_conf, 'w') as cf:
 	config.write(cf)
