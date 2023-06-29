@@ -8,3 +8,7 @@ fancier things so you likely do not need to use this any more and can simply add
 [boot]
 systemd=true
 ```
+
+## /etc/wsl.d
+
+This package also sets up a new directory `/etc/wsl.d` - any script in this directory will be run on initial boot of the WSL distro, rather than the single command that WSL2 allows by default.
